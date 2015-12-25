@@ -1,0 +1,5 @@
+= frecli
+
+Generate this with
+    frecli rdoc
+After you have described your command line interface

@@ -1,0 +1,15 @@
+# Missing top-level %s documentation comment is ok for simple classes
+Documentation:
+  Enabled: false
+
+# No preference for nested or compact class / module defenition
+ClassAndModuleChildren:
+  Enabled: false
+
+# We have bigger terminals than 80 columns these days
+Metrics/LineLength:
+  Max: 120
+
+# Prevent user defaults on double quotes
+StringLiterals:
+  EnforcedStyle: single_quotes

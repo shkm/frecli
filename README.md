@@ -21,9 +21,9 @@ This is still very basic and in development, but some functionality works. I'm w
 #### Commands
 - `c[urrent]` *default* show the project which currently has a running timer
 - `a[ll]` - list all projects
-- `s[how] - <id>` list the given project's attributes by its ID.
+- `s[how] <id>` - list the given project's attributes by its ID.
 
-### `pimers`
+### `timers`
 
 #### Aliases
 - `timers`

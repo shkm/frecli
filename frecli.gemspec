@@ -30,5 +30,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency('codeclimate-test-reporter', '>= 0.4')
   s.add_runtime_dependency('gli', '~> 2.13')
   s.add_runtime_dependency('terminal-table', '~> 1.5')
-  s.add_runtime_dependency('freckle-api', '>= 0.1.4')
+  s.add_runtime_dependency('freckle-api', '~> 0.1.4')
 end

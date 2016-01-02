@@ -9,9 +9,13 @@ Freckle CLI client in Ruby.
 
 ## What it does right now
 
-This is still very basic and in development, but some functionality works.. I'm working on both this and the API client behind it ([freckle-api](https://github.com/shkm/freckle-api)) consecutively.
+This is still very basic and in development, but some functionality works. I'm working on both this and the API client behind it ([freckle-api](https://github.com/shkm/freckle-api)) consecutively.
 
-Nothing! It's 100% useless right now.
+
+### Projects
+
+- `projects` lists all projects available to you
+- `project ID` list the given project's attributes by its ID.
 
 ## Configuration
 

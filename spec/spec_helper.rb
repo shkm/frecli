@@ -4,8 +4,12 @@ CodeClimate::TestReporter.start
 require 'rspec'
 require 'pry'
 require 'pry-byebug'
+require 'aruba/rspec'
 
 require 'frecli'
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+Dir.glob(::File.expand_path('../support/**/*.rb', __FILE__)).each { |f| require_relative f }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

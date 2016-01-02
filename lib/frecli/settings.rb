@@ -1,8 +1,8 @@
 require 'yaml'
 
-module Frecli::Settings
-  class << self
-    def settings(root_path: '/', reload: false)
+class Frecli
+  module Settings
+    def self.settings(root_path: '/', reload: false)
       if reload || !@settings
         return (@settings = compile_settings(root_path: root_path))
       end
@@ -10,14 +10,14 @@ module Frecli::Settings
       @settings
     end
 
-    def [](key)
+    def self.[](key)
       settings[key]
     end
 
     # Merges .frecli files down from root dir.
     # If .frecli is a dir, it will merge all files within.
     # Relevant ENV vars will always take precedence.
-    def compile_settings(root_path: '/')
+    def self.compile_settings(root_path: '/')
       {}.tap do |settings|
         setting_filenames(root_path: root_path).each do |name|
           settings.merge!(
@@ -28,7 +28,7 @@ module Frecli::Settings
       end
     end
 
-    def setting_filenames(root_path: '/')
+    def self.setting_filenames(root_path: '/')
       setting_paths(root_path: root_path).map do |path|
         filename = join_paths(path, '.frecli')
 
@@ -46,18 +46,18 @@ module Frecli::Settings
     #
     # e.g.
     # ['/', '/Users', '/Users/isaac', '/Users/isaac/project']
-    def setting_paths(root_path: '/')
+    def self.setting_paths(root_path: '/')
       Dir
         .getwd
         .sub(root_path, '/')
         .split('/')
         .reject(&:empty?)
         .inject([root_path]) do |path, wd|
-          path << join_paths(path.last, wd)
-        end
+        path << join_paths(path.last, wd)
+      end
     end
 
-    def join_paths(*paths)
+    def self.join_paths(*paths)
       separator = [*paths].first == '/' ? '' : '/'
 
       [*paths].join(separator)

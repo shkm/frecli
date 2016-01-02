@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frecli (0.2.0)
+    frecli (0.3.0)
       freckle-api (~> 0.1.4)
       gli (~> 2.13)
       terminal-table (~> 1.5)

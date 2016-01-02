@@ -1,7 +1,4 @@
 #!/usr/bin/env ruby
-# TODO: show required input for each command.
-# I think this is done with switches, even if
-# the switch ('-x') need not be specified.
 
 require 'gli'
 require 'frecli/table'
@@ -17,59 +14,101 @@ version Frecli::VERSION
 subcommand_option_handling :normal
 arguments :strict
 
-# desc 'Describe some switch here'
-# switch [:s,:switch]
-
-# desc 'Describe some flag here'
-# default_value 'the default'
-# arg_name 'The name of the argument'
-# flag [:f,:flagname]
-
-desc 'Show project'
-arg_name 'Describe arguments to projects here'
-command :project do |c|
-  c.action do |global_options,options,args|
-    id = args.first
- 
-    puts Frecli::Table.horizontal(
-      Frecli.project(id),
-      { ID: :id, Name: :name, Minutes: :minutes }
-    )
-
-    # puts Frecli::Table.horizontal(project, headings, values)
-    # Frecli::Table.rows(project, headings, values)
-    # puts Frecli::Table.list(projects, headings, values)
-    # puts Frecli::Table.show(project, headings, values)
+desc 'Manage projects'
+command [:project, :projects, :p] do |c|
+  c.desc 'List all projects'
+  c.command [:all, :a] do |all|
+    all.action do
+      puts Frecli::Table.vertical(
+        Frecli.projects,
+        [ 'ID', 'Name', 'Date created', 'Date updated' ],
+        [ :id, :name, :created_at, :updated_at ]
+      )
+    end
   end
+
+  c.desc 'Show a project'
+  c.arg :id, :required
+  c.command [:show, :s] do |show|
+    show.action do |_, _, args|
+      id = args[0]
+
+      puts Frecli::Table.horizontal(
+        Frecli.project(id),
+        { ID: :id,
+          Name: :name,
+          Minutes: :minutes }
+      )
+    end
+  end
+
+  c.desc 'Show the currently timed project'
+  c.command [:current, :c] do |current|
+    current.action do
+
+      # TODO: DRY
+      puts Frecli::Table.horizontal(
+        Frecli.project_current,
+        { ID: :id,
+          Name: :name,
+          Minutes: :minutes }
+      )
+    end
+  end
+
+  c.default_command :current
 end
 
-desc 'List projects'
-arg_name 'Describe arguments to projects here'
-command :projects do |c|
-  c.default_value 'default'
-  c.action do |global_options,options,args|
-
-    # Your command logic here
-    # If you have any errors, just raise them
-    # raise "that command made no sense"
-
-    puts Frecli::Table.vertical(
-      Frecli.projects,
-      [ 'ID', 'Name', 'Date created', 'Date updated' ],
-      [ :id, :name, :created_at, :updated_at ]
-    )
-
-    # puts Terminal::Table.new(rows: rows, headings: ['ID', 'Name', 'Date created', 'Date updated'])
+desc 'Manage timers'
+command [:timer, :timers, :t] do |c|
+  c.desc 'List all timers'
+  c.command [:all, :a] do |all|
+    all.action do
+      puts Frecli::Table.vertical(
+        Frecli.timers,
+        [ 'Project ID', 'State', 'Time', 'Date' ],
+        [ -> (timer) { timer.project.id }, :state, :formatted_time, :date ]
+      )
+    end
   end
+
+  c.desc 'Show a timer'
+  c.arg :id, :required
+  c.command [:show, :s] do |show|
+    show.action do |_, _, args|
+      project_id = args[0]
+
+
+      # TODO: DRY
+      puts Frecli::Table.horizontal(
+        Frecli.timer(project_id),
+        { ID: :id,
+          State: :state,
+          Time: :formatted_time,
+          Description: :description }
+      )
+    end
+  end
+
+  c.desc 'Show the current timer'
+  c.command [:current, :c] do |current|
+    current.action do
+
+      # TODO: DRY
+      puts Frecli::Table.horizontal(
+        Frecli.timer_current,
+        { ID: :id,
+          State: :state,
+          Time: :formatted_time,
+          Description: :description }
+      )
+    end
+  end
+
+  c.default_command :current
 end
 
-desc 'Describe time here'
-arg_name 'Describe arguments to time here'
-command :time do |c|
-  c.action do |global_options,options,args|
-    puts "time command ran"
-  end
-end
+
 
 pre do |global,command,options,args|
   # Pre logic here

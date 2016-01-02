@@ -11,11 +11,33 @@ Freckle CLI client in Ruby.
 
 This is still very basic and in development, but some functionality works. I'm working on both this and the API client behind it ([freckle-api](https://github.com/shkm/freckle-api)) consecutively.
 
+### `projects`
 
-### Projects
+#### Aliases
+- `projects`
+- `project`
+- `p`
 
-- `projects` lists all projects available to you
-- `project ID` list the given project's attributes by its ID.
+#### Commands
+- `c[urrent]` *default* show the project which currently has a running timer
+- `a[ll]` - list all projects
+- `s[how] - <id>` list the given project's attributes by its ID.
+
+### `pimers`
+
+#### Aliases
+- `timers`
+- `timer`
+- `t`
+
+#### Commands
+- `c[urrent]` *default* show the timer which is currently running
+- `a[ll]` - list all timers
+- `s[how] <id>` - list the given timer's attributes by its ID.
+
+### TODO next...
+1. Commit a timer with a description
+2. Test stuff.
 
 ## Configuration
 

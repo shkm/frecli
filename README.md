@@ -1,4 +1,7 @@
 # FreCLI
+**Note** Back at work and terribly busy after the Christmas holidays, so I
+won't be working on this for a week or two, but it's certainly not abandoned!
+
 Freckle CLI client in Ruby.
 
 [![Gem Version](https://badge.fury.io/rb/frecli.svg)](https://badge.fury.io/rb/frecli)

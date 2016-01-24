@@ -1,8 +1,7 @@
 # FreCLI
-**Note** Back at work and terribly busy after the Christmas holidays, so I
-won't be working on this for a week or two, but it's certainly not abandoned!
-
 Freckle CLI client in Ruby.
+
+**Note** anything is fair-game prior to a 1.0 release. Expect breaking changes.
 
 [![Gem Version](https://badge.fury.io/rb/frecli.svg)](https://badge.fury.io/rb/frecli)
 [![Dependency Status](https://gemnasium.com/shkm/frecli.svg)](https://gemnasium.com/shkm/frecli)
@@ -22,7 +21,7 @@ This is still very basic and in development, but some functionality works. I'm w
 - `p`
 
 #### Commands
-- `c[urrent]` *default* show the project which currently has a running timer
+- `c[urrent]` - show the project which currently has a running timer
 - `a[ll]` - list all projects
 - `s[how] <id>` - list the given project's attributes by its ID.
 
@@ -34,9 +33,13 @@ This is still very basic and in development, but some functionality works. I'm w
 - `t`
 
 #### Commands
-- `c[urrent]` *default* show the timer which is currently running
+- `c[urrent]` - show the timer which is currently running
 - `a[ll]` - list all timers
 - `s[how] <id>` - list the given timer's attributes by its ID.
+- `l[og] [-d <description>] [<project_id>]` - Logs the timer for a project id or  
+                                              current project
+
+                                              [-d] - description
 
 ### TODO next...
 1. Commit a timer with a description

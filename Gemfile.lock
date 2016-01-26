@@ -1,10 +1,9 @@
 PATH
   remote: .
   specs:
-    frecli (0.3.0)
-      freckle-api (~> 0.1.4)
+    frecli (0.4.0)
+      freckle-api (~> 0.1.6)
       gli (~> 2.13)
-      terminal-table (~> 1.5)
 
 GEM
   remote: https://rubygems.org/
@@ -41,7 +40,7 @@ GEM
     docile (1.1.5)
     event-bus (0.2.2)
     ffi (1.9.10)
-    freckle-api (0.1.4)
+    freckle-api (0.1.6)
       hashie (~> 3.4)
     gherkin3 (3.1.2)
     gli (2.13.4)
@@ -80,7 +79,6 @@ GEM
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
     slop (3.6.0)
-    terminal-table (1.5.2)
     thor (0.19.1)
     webmock (1.22.3)
       addressable (>= 2.3.6)

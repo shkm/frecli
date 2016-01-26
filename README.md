@@ -1,49 +1,55 @@
 # FreCLI
 Freckle CLI client in Ruby.
 
-**Note** anything is fair-game prior to a 1.0 release. Expect breaking changes.
-
 [![Gem Version](https://badge.fury.io/rb/frecli.svg)](https://badge.fury.io/rb/frecli)
 [![Dependency Status](https://gemnasium.com/shkm/frecli.svg)](https://gemnasium.com/shkm/frecli)
 [![Build Status](https://travis-ci.org/shkm/frecli.svg)](https://travis-ci.org/shkm/frecli)
 [![Code Climate](https://codeclimate.com/github/shkm/frecli/badges/gpa.svg)](https://codeclimate.com/github/shkm/frecli)
 [![Test Coverage](https://codeclimate.com/github/shkm/frecli/badges/coverage.svg)](https://codeclimate.com/github/shkm/frecli/coverage)
 
-## What it does right now
+## What you can do with it right now
 
-This is still very basic and in development, but some functionality works. I'm working on both this and the API client behind it ([freckle-api](https://github.com/shkm/freckle-api)) consecutively.
+- Basic time tracking (start, pause, log)
 
-### `projects`
+I'd eventually like FreCLI to be a real alternative UI for interacting with Freckle, but have had to scale it down in the short-term due to time constraints. Currently, I'd like to get basic time tracking and logging nailed, as that's the most interesting functionality to me and those around me.
 
-#### Aliases
-- `projects`
-- `project`
-- `p`
+Having said that, I do intend to implement considerably more features. Also note that I'm working on the API client behind this, [freckle-api](https://github.com/shkm/freckle-api), as FreCLI is developed.
 
-#### Commands
-- `c[urrent]` - show the project which currently has a running timer
-- `a[ll]` - list all projects
-- `s[how] <id>` - list the given project's attributes by its ID.
 
-### `timers`
+## Commands
 
-#### Aliases
-- `timers`
-- `timer`
-- `t`
+### `frecli time`
 
-#### Commands
-- `c[urrent]` - show the timer which is currently running
-- `a[ll]` - list all timers
-- `s[how] <id>` - list the given timer's attributes by its ID.
-- `l[og] [-d <description>] [<project_id>]` - Logs the timer for a project id or  
-                                              current project
+Presents you with a list of projects. Simply enter the number of the project you'd like to time, and away you go.
 
-                                              [-d] - description
+### `frecli status`
 
-### TODO next...
-1. Commit a timer with a description
-2. Test stuff.
+Displays the time on the running timer, if there is one.
+
+### `frecli pause`
+
+Pauses the running timer.
+
+### `frecli log [description]`
+
+Logs the current timer, adding a description if one is given.
+
+
+## TODO
+
+- Daily report (time logged, unlogged, total)
+- More specs
+- Log timers of other projects
+- Deal with exceptions / errors
+- Project selection via settings
+- Caching
+- Expanded reports (e.g. weekly, monthly, with natural time parsing)
+- Various report outputs (e.g. stdout, csv, html)
+- Administrative features
+  - Project management
+  - Invoices
+  - Tags
+  - Reports for other users
 
 ## Configuration
 
@@ -108,5 +114,5 @@ fi
 ```
 
 ## Thanks
-- My work, [Lico Innovations](http://lico.nl/) for using Freckle :-)
+- My work, [Lico Innovations](http://lico.nl/) for using Freckle and employing the coolest kids in town (I'm the exception).
 - The awesome Freckle developers — Thomas Cannon in particular — who shared interest in this project and even gave me a free account for testing!

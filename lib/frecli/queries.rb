@@ -9,15 +9,6 @@ class Frecli
         @api = FreckleApi.new(Settings[:api_key])
       end
 
-      # The project which is currently being timed.
-      def project_current
-        project_id = timer_current.project.id
-
-        # TODO: use a reload method instead.
-        sleep 0.5
-        project(project_id)
-      end
-
       def projects
         api.projects
       end
@@ -26,18 +17,31 @@ class Frecli
         api.project(id)
       end
 
-      def timer_current
-        timers.detect { |timer| timer.state == :running }
-      end
-
       def timers
         api.timers
       end
 
-      def timer(project_id)
-        api.timer(project_id)
+      def timer_log(timer, description = nil)
+        timer.log!(api, description: description)
       end
 
+      def timer(project_id = nil)
+        api.timer(project_id) || timer_current
+      end
+
+      def timer_current
+        timers.detect { |timer| timer.state == :running }
+      end
+
+      def timer_start(project)
+        FreckleApi::Timer.new(project: project).tap do |timer|
+          timer.start!(api)
+        end
+      end
+
+      def timer_pause(timer)
+        timer.pause!(api)
+      end
     end
   end
 end

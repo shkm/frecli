@@ -1,6 +1,8 @@
 require 'frecli/version.rb'
 require 'frecli/settings.rb'
 require 'frecli/queries.rb'
+require 'frecli/cli.rb'
+
 require 'freckle_api'
 require 'json'
 

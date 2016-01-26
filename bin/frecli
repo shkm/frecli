@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'gli'
-require 'frecli/table'
 require 'frecli'
 
 include GLI::App
@@ -14,101 +13,36 @@ version Frecli::VERSION
 subcommand_option_handling :normal
 arguments :strict
 
-desc 'Manage projects'
-command [:project, :projects, :p] do |c|
-  c.desc 'List all projects'
-  c.command [:all, :a] do |all|
-    all.action do
-      puts Frecli::Table.vertical(
-        Frecli.projects,
-        [ 'ID', 'Name', 'Date created', 'Date updated' ],
-        [ :id, :name, :created_at, :updated_at ]
-      )
-    end
+desc 'Shows the current timing status'
+command :status do |c|
+  c.action do
+    Frecli::Cli.status
   end
-
-  c.desc 'Show a project'
-  c.arg :id, :required
-  c.command [:show, :s] do |show|
-    show.action do |_, _, args|
-      id = args[0]
-
-      puts Frecli::Table.horizontal(
-        Frecli.project(id),
-        { ID: :id,
-          Name: :name,
-          Minutes: :minutes }
-      )
-    end
-  end
-
-  c.desc 'Show the currently timed project'
-  c.command [:current, :c] do |current|
-    current.action do
-
-      # TODO: DRY
-      puts Frecli::Table.horizontal(
-        Frecli.project_current,
-        { ID: :id,
-          Name: :name,
-          Minutes: :minutes }
-      )
-    end
-  end
-
-  c.default_command :current
 end
 
-desc 'Manage timers'
-command [:timer, :timers, :t] do |c|
-  c.desc 'List all timers'
-  c.command [:all, :a] do |all|
-    all.action do
-      puts Frecli::Table.vertical(
-        Frecli.timers,
-        [ 'Project ID', 'State', 'Time', 'Date' ],
-        [ -> (timer) { timer.project.id }, :state, :formatted_time, :date ]
-      )
-    end
+desc 'Times a project'
+command :time do |c|
+  c.action do
+    Frecli::Cli.time
   end
-
-  c.desc 'Show a timer'
-  c.arg :id, :required
-  c.command [:show, :s] do |show|
-    show.action do |_, _, args|
-      project_id = args[0]
-
-
-      # TODO: DRY
-      puts Frecli::Table.horizontal(
-        Frecli.timer(project_id),
-        { ID: :id,
-          State: :state,
-          Time: :formatted_time,
-          Description: :description }
-      )
-    end
-  end
-
-  c.desc 'Show the current timer'
-  c.command [:current, :c] do |current|
-    current.action do
-
-      # TODO: DRY
-      puts Frecli::Table.horizontal(
-        Frecli.timer_current,
-        { ID: :id,
-          State: :state,
-          Time: :formatted_time,
-          Description: :description }
-      )
-    end
-  end
-
-  c.default_command :current
 end
 
+desc 'Pauses the running timer'
+command :pause do |c|
+  c.action do
+    Frecli::Cli.pause
+  end
+end
 
+desc 'Logs the running timer'
+arg_name 'description', :optional
+command :log do |c|
+  c.action do |_, _, args|
+    description = args.shift.to_s
+
+    Frecli::Cli.log(description)
+  end
+end
 
 pre do |global,command,options,args|
   # Pre logic here

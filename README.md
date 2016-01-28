@@ -37,6 +37,7 @@ Logs the current timer, adding a description if one is given.
 
 ## TODO
 
+- Project selection by name/alias/fuzzy
 - Daily report (time logged, unlogged, total)
 - More specs
 - Log timers of other projects

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frecli (0.4.0)
+    frecli (0.5.0)
       freckle-api (~> 0.1.6)
       gli (~> 2.13)
 
@@ -42,6 +42,7 @@ GEM
     ffi (1.9.10)
     freckle-api (0.1.6)
       hashie (~> 3.4)
+    fuzzy_match (2.1.0)
     gherkin3 (3.1.2)
     gli (2.13.4)
     hashdiff (0.2.3)
@@ -92,6 +93,7 @@ DEPENDENCIES
   aruba (~> 0.11)
   codeclimate-test-reporter (>= 0.4)
   frecli!
+  fuzzy_match (~> 2.1.0)
   pry-byebug (~> 3.3)
   rake (~> 10.1)
   rdoc (~> 4.2)

@@ -1,3 +1,5 @@
+require 'fuzzy_match'
+
 class Frecli
   module Cli
     def self.status
@@ -10,26 +12,11 @@ class Frecli
       end
     end
 
-    def self.time
-      projects = Frecli.projects.sort { |x, y| x.name <=> y.name }
+    def self.time(project_query)
+      project = FuzzyMatch
+        .new(Frecli.projects, read: :name)
+        .find(project_query)
 
-      puts "Select a project to time:\n\n"
-
-      projects.each_with_index do |project, i|
-        puts "[#{i + 1}] #{project.name}"
-      end
-
-      print "\n\nProject: "
-
-      selection = STDIN.gets.chomp.to_i
-
-      unless (1..projects.count).include? selection
-        puts "Project invalid."
-
-        return
-      end
-
-      project = projects[selection - 1]
       timer = Frecli.timer_start(project)
 
       puts "Now timing #{project.name} (#{timer.formatted_time})."

@@ -18,9 +18,17 @@ Having said that, I do intend to implement considerably more features. Also note
 
 ## Commands
 
-### `frecli time`
+### `frecli time project_name`
 
-Presents you with a list of projects. Simply enter the number of the project you'd like to time, and away you go.
+Starts timing the specified project. Project name can be fuzzy.
+
+e.g., to time a project named FreCLI:
+
+```
+frecli time frecli
+frecli time frec
+frecli time fc
+```
 
 ### `frecli status`
 
@@ -37,9 +45,10 @@ Logs the current timer, adding a description if one is given.
 
 ## TODO
 
-- Project selection by name/alias/fuzzy
+- ~~Project selection by name/alias/fuzzy~~
+- Project list
 - Daily report (time logged, unlogged, total)
-- More specs
+- More specs. I put this off in favour of having something usable.
 - Log timers of other projects
 - Deal with exceptions / errors
 - Project selection via settings

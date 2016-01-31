@@ -21,9 +21,12 @@ command :status do |c|
 end
 
 desc 'Times a project'
+arg_name 'project_query'
 command :time do |c|
-  c.action do
-    Frecli::Cli.time
+  c.action do |_, _, args|
+    project_query = args.shift.to_s
+
+    Frecli::Cli.time(project_query)
   end
 end
 

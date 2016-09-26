@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frecli (0.5.1)
+    frecli (0.5.2)
       freckle-api (~> 0.1.6)
       fuzzy_match (~> 2.1.0)
       gli (~> 2.13)
@@ -41,13 +41,13 @@ GEM
     docile (1.1.5)
     event-bus (0.2.2)
     ffi (1.9.10)
-    freckle-api (0.1.6)
+    freckle-api (0.1.7)
       hashie (~> 3.4)
     fuzzy_match (2.1.0)
     gherkin3 (3.1.2)
     gli (2.14.0)
     hashdiff (0.2.3)
-    hashie (3.4.4)
+    hashie (3.4.6)
     json (1.8.3)
     method_source (0.8.2)
     multi_json (1.11.2)
@@ -101,4 +101,4 @@ DEPENDENCIES
   webmock (~> 1.22)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

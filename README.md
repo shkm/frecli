@@ -61,6 +61,11 @@ Logs the current timer, adding a description if one is given.
   - Tags
   - Reports for other users
 
+## Extras
+I've included a very simple Alfred workflow in `extras/`. You may need to modify it to point to your frecli bin once imported.
+
+All it does is allow you to use FreCLI from anywhere, by typing `fr <frecli args>`. If you want to help with auto-completion or something, feel free to make a PR, but I think we'll need some proper caching in FreCLI first.
+
 ## Configuration
 
 There are a couple of ways to configure FreCLI.

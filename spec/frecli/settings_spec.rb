@@ -19,7 +19,7 @@ RSpec.describe Frecli::Settings do
       let(:fixture) { 'project_without_settings' }
 
       it "stores the file's settings" do
-        expect(settings).to eq(api_key: 'the_api_key')
+        expect(settings).to include(api_key: 'the_api_key')
       end
     end
 
@@ -27,7 +27,7 @@ RSpec.describe Frecli::Settings do
       let(:fixture) { 'project_with_frecli_folder' }
 
       it 'includes settings from all files in the folder' do
-        expect(settings).to eq(
+        expect(settings).to include(
           api_key: 'the_api_key', # from home
           setting_one: 1,
           setting_two: 2
@@ -39,7 +39,7 @@ RSpec.describe Frecli::Settings do
       let(:fixture) { 'project_with_settings' }
 
       it "stores both files' settings" do
-        expect(settings).to eq(api_key: 'the_api_key', foo: 'bar')
+        expect(settings).to include(api_key: 'the_api_key', foo: 'bar')
       end
     end
 
@@ -47,7 +47,15 @@ RSpec.describe Frecli::Settings do
       let(:fixture) { 'project_with_override' }
 
       it 'overrides a previously set setting with the more specific one.' do
-        expect(settings).to eq(api_key: 'overridden_api_key')
+        expect(settings).to include(api_key: 'overridden_api_key')
+      end
+    end
+
+    context 'when a setting is not found' do
+      let(:fixture) { 'project_with_settings' }
+
+      it 'provides a default if a default exists' do
+        expect(settings[:cache_path]).to eq File.expand_path '~/.frecli_cache'
       end
     end
   end

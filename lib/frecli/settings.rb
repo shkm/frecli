@@ -2,6 +2,11 @@ require 'yaml'
 
 class Frecli
   module Settings
+    DEFAULTS = {
+      cache_path: File.expand_path("~/.frecli_cache"),
+      cache_ttl: 30
+    }.freeze
+
     def self.settings(root_path: '/', reload: false)
       if reload || !@settings
         return (@settings = compile_settings(root_path: root_path))
@@ -11,14 +16,14 @@ class Frecli
     end
 
     def self.[](key)
-      settings[key]
+      settings[key] || DEFAULTS[key]
     end
 
     # Merges .frecli files down from root dir.
     # If .frecli is a dir, it will merge all files within.
     # Relevant ENV vars will always take precedence.
     def self.compile_settings(root_path: '/')
-      {}.tap do |settings|
+      DEFAULTS.dup.tap do |settings|
         setting_filenames(root_path: root_path).each do |name|
           settings.merge!(
             Hash[YAML.load(File.open name).map { |(k, v)| [k.to_sym, v] }])

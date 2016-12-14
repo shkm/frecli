@@ -8,14 +8,14 @@ class Frecli
       if timer
         puts "Timer running on #{timer.project.name} (#{timer.formatted_time})."
       else
-        puts "No timer running."
+        puts 'No timer running.'
       end
     end
 
     def self.time(project_query)
       project = FuzzyMatch
-        .new(Frecli.projects, read: :name)
-        .find(project_query)
+                .new(Frecli.projects, read: :name)
+                .find(project_query)
 
       timer = Frecli.timer_start(project)
 
@@ -40,17 +40,20 @@ class Frecli
     def self.log(description = '')
       timer = Frecli.timer_current
 
-      unless timer
-        puts 'No timer running.'
-        return
-      end
+      return puts 'No timer running.' unless timer
 
       if Frecli.timer_log(timer, description)
         puts "Logged #{timer.project.name} (#{timer.formatted_time})."
-        puts %Q("#{description}") unless description.empty?
+        puts %("#{description}") unless description.empty?
       else
         puts 'Could not log timer.'
       end
+    end
+
+    def self.projects(refresh: false)
+      Frecli
+        .projects(refresh: refresh)
+        .each { |project| puts project.name }
     end
   end
 end

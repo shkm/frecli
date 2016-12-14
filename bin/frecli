@@ -47,6 +47,16 @@ command :log do |c|
   end
 end
 
+desc 'Lists projects'
+arg_name 'refresh', :optional
+command :projects do |c|
+  c.action do |_, _, args|
+    refresh = args.shift
+
+    Frecli::Cli.projects(refresh: refresh)
+  end
+end
+
 pre do |global,command,options,args|
   # Pre logic here
   # Return true to proceed; false to abort and not call the

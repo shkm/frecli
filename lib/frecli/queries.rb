@@ -6,11 +6,16 @@ class Frecli
 
     module ClassMethods
       def api
-        @api = FreckleApi.new(Settings[:api_key])
+        @api ||= FreckleApi.new(Settings[:api_key])
       end
 
-      def projects
-        api.projects
+      def cache
+        @cache ||= Cache.new(Settings[:cache_path], Settings[:cache_ttl])
+      end
+
+      def projects(refresh: false)
+        cache_or_api(:projects, as: FreckleApi::Project, refresh: refresh)
+          .sort_by(&:name)
       end
 
       def project(id)
@@ -41,6 +46,12 @@ class Frecli
 
       def timer_pause(timer)
         timer.pause!(api)
+      end
+
+      def cache_or_api(key, refresh: false, as: Hash)
+        cache.cache!(key, api.send(key)) if refresh || cache.uncached?(key)
+
+        cache.get(key, as: as)
       end
     end
   end

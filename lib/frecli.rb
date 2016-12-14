@@ -1,5 +1,6 @@
 require 'frecli/version.rb'
 require 'frecli/settings.rb'
+require 'frecli/cache.rb'
 require 'frecli/queries.rb'
 require 'frecli/cli.rb'
 

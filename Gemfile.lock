@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frecli (0.5.2)
+    frecli (0.6.0)
       freckle-api (~> 0.1.6)
       fuzzy_match (~> 2.1.0)
       gli (~> 2.13)
@@ -101,4 +101,4 @@ DEPENDENCIES
   webmock (~> 1.22)
 
 BUNDLED WITH
-   1.12.5
+   1.13.5

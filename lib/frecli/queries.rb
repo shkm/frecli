@@ -14,7 +14,7 @@ class Frecli
       end
 
       def projects(refresh: false)
-        cache_or_api(:projects, as: FreckleApi::Project, refresh: refresh)
+        lookup(:projects, as: FreckleApi::Project, refresh: refresh)
           .sort_by(&:name)
       end
 
@@ -22,8 +22,9 @@ class Frecli
         api.project(id)
       end
 
-      def timers
-        api.timers
+      def timers(refresh: refresh)
+        lookup(:timers, as: FreckleApi::Timer, refresh: refresh)
+          .sort_by { |timer| timer.project.name }
       end
 
       def timer_log(timer, description = nil)
@@ -34,7 +35,7 @@ class Frecli
         api.timer(project_id) || timer_current
       end
 
-      def timer_current
+      def timer_current(refresh: refresh)
         timers.detect { |timer| timer.state == :running }
       end
 
@@ -48,8 +49,13 @@ class Frecli
         timer.pause!(api)
       end
 
-      def cache_or_api(key, refresh: false, as: Hash)
-        cache.cache!(key, api.send(key)) if refresh || cache.uncached?(key)
+      def lookup(key, refresh: false, as: Hash, api_fallback: true)
+        # def cache_or_api(key, refresh: false, as: Hash)
+        if cache.uncached?(key) || refresh
+          raise NotCachedError.new(key: key) unless api_fallback
+
+          cache.cache!(key, api.send(key)) if refresh || cache.uncached?(key)
+        end
 
         cache.get(key, as: as)
       end

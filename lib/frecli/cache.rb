@@ -25,7 +25,8 @@ class Frecli
     end
 
     PATHS = {
-      projects: '/projects.json'
+      projects: '/projects.json',
+      timer_current: '/timer_current.json'
     }.freeze
 
     def initialize(cache_path, ttl)

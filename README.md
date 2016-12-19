@@ -50,20 +50,13 @@ Lists available projects.
 ## TODO
 
 - ~~Project selection by name/alias/fuzzy~~
-- Project list
-- Daily report (time logged, unlogged, total)
-- More specs. I put this off in favour of having something usable.
+- ~~Project list~~
 - Log timers of other projects
-- Deal with exceptions / errors
-- Project selection via settings
 - Caching
-- Expanded reports (e.g. weekly, monthly, with natural time parsing)
-- Various report outputs (e.g. stdout, csv, html)
-- Administrative features
-  - Project management
-  - Invoices
-  - Tags
-  - Reports for other users
+  - ~~Basic caching implementation~~
+  - Cache status
+  - Cache everything (that we can)
+- Reports (e.g. daily, weekly, monthly)
 
 ## Extras
 I've included a very simple Alfred workflow in `extras/`. You may need to modify it to point to your frecli bin once imported.

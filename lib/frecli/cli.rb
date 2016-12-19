@@ -51,9 +51,15 @@ class Frecli
     end
 
     def self.projects(refresh: false)
-      Frecli
-        .projects(refresh: refresh)
-        .each { |project| puts project.name }
+      projects = Frecli
+                 .projects(refresh: refresh)
+                 .map(&:name)
+
+      if projects.empty?
+        puts 'No projects found.'
+      else
+        projects.each(&method(:puts))
+      end
     end
   end
 end

@@ -42,6 +42,10 @@ Pauses the running timer.
 
 Logs the current timer, adding a description if one is given.
 
+### `frecli projects`
+
+Lists available projects.
+
 
 ## TODO
 
@@ -127,6 +131,12 @@ if [ -f "$HOME/.secrets" ]; then
 fi
 
 ```
+
+#### `cache_path` *optional* (`'~/.frecli_cache'`)
+The path to send cache. This will contain some serialized (JSON) FreckleApi stuff.
+
+#### `cache_ttl` *optional* (`1440`)
+The number of minutes to wait before forcing a refresh on a cached file.
 
 ## Thanks
 - My work, [Lico Innovations](http://lico.nl/) for using Freckle and employing the coolest kids in town (I'm the exception).

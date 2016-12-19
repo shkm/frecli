@@ -19,6 +19,8 @@ class Frecli
                     else
                       'No such cache available.'
                     end
+
+        super(message)
       end
     end
 

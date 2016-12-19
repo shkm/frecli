@@ -3,8 +3,8 @@ require 'yaml'
 class Frecli
   module Settings
     DEFAULTS = {
-      cache_path: File.expand_path("~/.frecli_cache"),
-      cache_ttl: 30
+      cache_path: File.expand_path('~/.frecli_cache'),
+      cache_ttl: 1440 # 1 day
     }.freeze
 
     def self.settings(root_path: '/', reload: false)

@@ -50,11 +50,10 @@ class Frecli
       end
 
       def lookup(key, refresh: false, as: Hash, api_fallback: true)
-        # def cache_or_api(key, refresh: false, as: Hash)
         if cache.uncached?(key) || refresh
-          raise NotCachedError.new(key: key) unless api_fallback
+          raise Frecli::Cache::NotCachedError.new(key: key) unless api_fallback
 
-          cache.cache!(key, api.send(key)) if refresh || cache.uncached?(key)
+          cache.cache!(key, api.send(key))
         end
 
         cache.get(key, as: as)
